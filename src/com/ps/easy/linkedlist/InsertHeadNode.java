@@ -7,7 +7,9 @@ import java.util.Scanner;
 
 import static com.ps.easy.linkedlist.PrintLinkedList.printLinkedList;
 
-public class InsertTailNode {
+//https://www.hackerrank.com/challenges/insert-a-node-at-the-head-of-a-linked-list/problem
+public class InsertHeadNode {
+
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -20,26 +22,27 @@ public class InsertTailNode {
             int listItem = scanner.nextInt();
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            list.head = insertNodeAtTail(list.head, listItem);
+            list.head = insertNodeAtHead(list.head, listItem);
         }
         scanner.close();
         printLinkedList(list.head);
     }
 
-    static SinglyLinkedListNode insertNodeAtTail(SinglyLinkedListNode head, int data) {
-        SinglyLinkedListNode singlyLinkedListNode = new SinglyLinkedListNode(data);
+    /**
+     * @param list refers to head of the list
+     * @param data value to be added at head
+     * @return head of the list
+     */
+    static SinglyLinkedListNode insertNodeAtHead(SinglyLinkedListNode list, int data) {
+        SinglyLinkedListNode node = new SinglyLinkedListNode(data);
 
-        if (head == null) {
-            head = singlyLinkedListNode;
+        if (list == null) {
+            return node;
         } else {
-            SinglyLinkedListNode lastNode = head;
-            while(lastNode.next != null) {
-                lastNode = lastNode.next;
-            }
-            lastNode.next = singlyLinkedListNode;
+            node.next = list;
+            list = node;
+            return list;
         }
-
-        return head;
     }
 
 }
